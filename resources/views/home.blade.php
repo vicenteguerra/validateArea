@@ -40,10 +40,18 @@
                 <div class="well" >
                   <h4>POST Request</h4>
                   <pre><code id="post_url"></code></pre>
+                  <pre><code id="post_info">
+{
+	"latitude": "19.418690",
+	"longitude": "-99.185987"
+}
+                  </code></pre>
+                  <p>*Replace with your location</p>
                 </div>
                 <div class="well">
                   <h4>GET Request</h4>
                   <pre><code id="get_url"></code></pre>
+                  <p>*Replace with your location</p>
                 </div>
               </div>
             </div>
@@ -67,6 +75,8 @@ function initMap() {
 
   });
 
+  $("#post_info").hide();
+
   $("#delete-polygon").click(function(){
     if(polygon_selected){
       deletePolygon($("#polygon-id").val());
@@ -78,6 +88,7 @@ function initMap() {
       $("#post_url").text("");
       $("#delete-polygon").prop( "disabled", true );
       $("#save-polygon").prop( "disabled", true );
+      $("#post_info").hide();
 
     }else{
       toastr.info("Empty");
@@ -95,6 +106,7 @@ function initMap() {
   });
 
   var polygon_selected;
+  var base_url = "/api/v1/"
 
   var addListenersOnPolygon = function(polygon) {
     google.maps.event.addListener(polygon, 'click', function (event) {
@@ -103,10 +115,11 @@ function initMap() {
       infoWindow.open(map);
       $("#polygon-name").val(polygon.name);
       $("#polygon-id").val(polygon.id);
-      $("#post_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
-      $("#get_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
+      $("#post_url").text(location.protocol + "//" + location.host + base_url + polygon.id);
+      $("#get_url").text(location.protocol + "//" + location.host + base_url + polygon.id + "{latitude}/{longitude}") ;
       $("#delete-polygon").prop( "disabled", false );
       $("#save-polygon").prop( "disabled", false );
+      $("#post_info").show();
       polygon_selected = polygon;
 
     });

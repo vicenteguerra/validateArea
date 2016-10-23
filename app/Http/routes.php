@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* API */
+
+Route::get('/api/v1/{polygon_id}/{latitude}/{longitude}', 'api\v1\ValidateAreaController@getIsValid');
+Route::post('/api/v1/{polygon_id}', 'api\v1\ValidateAreaController@postIsValid');
+
+
+/* ADMIN */
+
 Route::post('/polygon', 'PolygonController@create');
 Route::post('/polygon/update', 'PolygonController@update');
 Route::post('/polygon/delete', 'PolygonController@delete');
