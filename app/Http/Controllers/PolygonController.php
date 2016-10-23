@@ -66,8 +66,41 @@ class PolygonController extends Controller
 
         $json = (object) [
           'status' => 200,
-          'response' => "/polygon/update",
+          'response' => "/polygon/delete",
           'msg' => "Polygon Deleted"
+          ];
+        return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+      }catch(\Exeption $e){
+        $json = (object) [
+          'status' => 200,
+          'response' => "/polygon/delete",
+          'msg' => "Error " . $e->getMessage()
+          ];
+        return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+      }
+    }
+
+    public function update(){
+      try{
+        $polygon_id = Input::get("polygon_id");
+        $name = Input::get("name");
+
+        if(!$name){
+          $json = (object) [
+            'status' => 200,
+            'response' => "/polygon/update",
+            'msg' => "Please insert name"
+            ];
+        }
+
+        $polygon = Polygon::where('id', $polygon_id)->first();
+        $polygon->name = $name;
+        $polygon->save();
+
+        $json = (object) [
+          'status' => 200,
+          'response' => "/polygon/update",
+          'msg' => "Polygon Updated"
           ];
         return response(json_encode($json), 200)->header('Content-Type', 'application/json');
       }catch(\Exeption $e){

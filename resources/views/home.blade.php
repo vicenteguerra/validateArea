@@ -66,7 +66,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
 
   });
-  
+
   $("#delete-polygon").click(function(){
     if(polygon_selected){
       deletePolygon($("#polygon-id").val());
@@ -79,6 +79,16 @@ function initMap() {
       $("#delete-polygon").prop( "disabled", true );
       $("#save-polygon").prop( "disabled", true );
 
+    }else{
+      toastr.info("Empty");
+    }
+  });
+
+  $("#save-polygon").click(function(){
+    if(polygon_selected){
+      updatePolygon($("#polygon-id").val(), $("#polygon-name").val());
+      polygon_selected.name = $("#polygon-name").val();
+      infoWindow.setContent(polygon_selected.name);
     }else{
       toastr.info("Empty");
     }
@@ -138,6 +148,27 @@ function deletePolygon(id){
        }
     });
  }
+
+ function updatePolygon(id, name){
+   $.ajaxSetup({
+     headers: {
+             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+     })
+     $.ajax({
+        type:'POST',
+        url:'/polygon/update',
+        data: {polygon_id: id, name: name},
+        dataType: 'json',
+        success:function(data){
+          toastr.info(data.msg);
+          console.log(data.msg);
+        },
+        error: function(error){
+          console.log(error);
+        }
+     });
+  }
 
 
 </script>
