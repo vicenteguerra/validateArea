@@ -64,8 +64,27 @@ function initMap() {
     zoom: 14,
     center: {lat: 19.434381178461, lng: -99.1637134552},
     mapTypeId: google.maps.MapTypeId.TERRAIN
+
+  });
+  
+  $("#delete-polygon").click(function(){
+    if(polygon_selected){
+      deletePolygon($("#polygon-id").val());
+      infoWindow.open(null);
+      polygon_selected.setMap(null);
+      $("#polygon-id").val("");
+      $("#polygon-name").val("");
+      $("#get_url").text("");
+      $("#post_url").text("");
+      $("#delete-polygon").prop( "disabled", true );
+      $("#save-polygon").prop( "disabled", true );
+
+    }else{
+      toastr.info("Empty");
+    }
   });
 
+  var polygon_selected;
 
   var addListenersOnPolygon = function(polygon) {
     google.maps.event.addListener(polygon, 'click', function (event) {
@@ -78,24 +97,8 @@ function initMap() {
       $("#get_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
       $("#delete-polygon").prop( "disabled", false );
       $("#save-polygon").prop( "disabled", false );
+      polygon_selected = polygon;
 
-      $("#delete-polygon").click(function(){
-        if($("#polygon-id").val()){
-          deletePolygon($("#polygon-id").val());
-
-          $("#polygon-id").val("");
-          $("#polygon-name").val("");
-          $("#get_url").text("");
-          $("#post_url").text("");
-          $("#delete-polygon").prop( "disabled", true );
-          $("#save-polygon").prop( "disabled", true );
-          
-          polygon.setMap(null);
-          infoWindow.open(null);
-        }else{
-          toastr.info("Empty");
-        }
-      });
     });
   }
 
