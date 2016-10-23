@@ -39,11 +39,11 @@
               <div class="panel-body">
                 <div class="well" >
                   <h4>POST Request</h4>
-                  <p id="post_url"></p>
+                  <pre><code id="post_url"></code></pre>
                 </div>
                 <div class="well">
                   <h4>GET Request</h4>
-                  <p id="get_url"></p>
+                  <pre><code id="get_url"></code></pre>
                 </div>
               </div>
             </div>
@@ -74,7 +74,8 @@ function initMap() {
       infoWindow.open(map);
       $("#polygon-name").val(polygon.name);
       $("#polygon-id").val(polygon.id);
-      $("#post_url").text(location.protocol + "//" + location.host + "/" + polygon.id);
+      $("#post_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
+      $("#get_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
     });
   }
 
