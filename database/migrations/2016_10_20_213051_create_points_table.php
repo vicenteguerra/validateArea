@@ -16,7 +16,7 @@ class CreatePointsTable extends Migration
             $table->increments('id')->unique();
             $table->string('latitude');
             $table->string('longitude');
-            $table->integer('polygon_id')->unsigned();
+            $table->uuid('polygon_id');
             $table->foreign('polygon_id')->references('id')->on('polygons');
             $table->timestamps();
         });

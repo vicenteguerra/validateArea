@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Alsofronie\Uuid\Uuid32ModelTrait;
 
 class User extends Authenticatable
 {
+    use Uuid32ModelTrait;
     /**
      * The attributes that are mass assignable.
      *

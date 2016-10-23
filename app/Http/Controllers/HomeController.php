@@ -59,6 +59,7 @@ class HomeController extends Controller
     }
 
     public function test(){
+      var_dump(Uuid::generate(4));die;
       $polygons = Polygon::where('user_id', Auth::id())->get();
       $polygons_array = Array();
       foreach ($polygons as $polygon) {

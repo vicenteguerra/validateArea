@@ -54,4 +54,30 @@ class PolygonController extends Controller
       }
     }
 
+    public function delete(){
+      try{
+        $polygon_id = Input::get("polygon_id");
+        $points = Point::where('polygon_id', $polygon_id)->get();
+        foreach ($points as $point) {
+          $point->delete();
+        }
+        $polygon = Polygon::where('id', $polygon_id)->first();
+        $polygon->delete();
+
+        $json = (object) [
+          'status' => 200,
+          'response' => "/polygon/update",
+          'msg' => "Polygon Deleted"
+          ];
+        return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+      }catch(\Exeption $e){
+        $json = (object) [
+          'status' => 200,
+          'response' => "/polygon/update",
+          'msg' => "Error " . $e->getMessage()
+          ];
+        return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+      }
+    }
+
 }
