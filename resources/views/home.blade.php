@@ -30,8 +30,8 @@
                   <input type="text" class="form-control" id="polygon-name" aria-describedby="basic-addon3">
                   <input type="hidden" class="form-control" id="polygon-id" aria-describedby="basic-addon3">
                 </div><br>
-                <button class="btn btn-success col-md-12" href="#" role="button">Save Name</button><br><br>
-                <button class="btn btn-danger col-md-12" href="#" role="button">Delete Polygon</button><br>
+                <button class="btn btn-success col-md-12" id="save-polygon" role="button" disabled>Save Name</button><br><br>
+                <button class="btn btn-danger col-md-12" id="delete-polygon" role="button" disabled>Delete Polygon</button><br>
               </div>
             </div>
             <div class="panel panel-warning">
@@ -51,17 +51,17 @@
         </div>
     </div>
 </div>
+<meta name="_token" content="{!! csrf_token() !!}" />
 
 
 <script type="text/javascript">
-
 
 var map;
 var infoWindow;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 14,
     center: {lat: 19.434381178461, lng: -99.1637134552},
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
@@ -76,6 +76,26 @@ function initMap() {
       $("#polygon-id").val(polygon.id);
       $("#post_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
       $("#get_url").text(location.protocol + "//" + location.host + "/{{ Auth::id() }}/"+ polygon.id ) ;
+      $("#delete-polygon").prop( "disabled", false );
+      $("#save-polygon").prop( "disabled", false );
+
+      $("#delete-polygon").click(function(){
+        if($("#polygon-id").val()){
+          deletePolygon($("#polygon-id").val());
+
+          $("#polygon-id").val("");
+          $("#polygon-name").val("");
+          $("#get_url").text("");
+          $("#post_url").text("");
+          $("#delete-polygon").prop( "disabled", true );
+          $("#save-polygon").prop( "disabled", true );
+          
+          polygon.setMap(null);
+          infoWindow.open(null);
+        }else{
+          toastr.info("Empty");
+        }
+      });
     });
   }
 
@@ -95,6 +115,26 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow;
 }
 
+function deletePolygon(id){
+  $.ajaxSetup({
+    headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+    $.ajax({
+       type:'POST',
+       url:'/polygon/delete',
+       data: {polygon_id: id},
+       dataType: 'json',
+       success:function(data){
+         toastr.info(data.msg);
+         console.log(data.msg);
+       },
+       error: function(error){
+         console.log(error);
+       }
+    });
+ }
 
 
 </script>

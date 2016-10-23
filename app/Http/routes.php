@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::post('/polygon', 'PolygonController@create');
+Route::post('/polygon/update', 'PolygonController@update');
+Route::post('/polygon/delete', 'PolygonController@delete');
 
 Route::auth();
 
