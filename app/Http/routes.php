@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/polygon', 'PolygonController@create');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/create', 'HomeController@create');
+Route::get('/test', 'HomeController@test');
