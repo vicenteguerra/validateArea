@@ -8,6 +8,11 @@ use Alsofronie\Uuid\Uuid32ModelTrait;
 class User extends Authenticatable
 {
     use Uuid32ModelTrait;
+
+    public function polygons()
+    {
+        return $this->hasMany('App\Polygon','user_id','id');
+    }
     /**
      * The attributes that are mass assignable.
      *
