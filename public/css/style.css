@@ -1,0 +1,42 @@
+body{
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.info-home{
+  margin-top: 20vh;
+  opacity: 0.9;
+  z-index: 2;
+  color: #666;
+}
+
+.background-video{
+  opacity: 0.5;
+  pointer-events: none; overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+}
+.video-container{
+  margin:0px;
+  padding:0px;
+  overflow:hidden;
+  pointer-events: none;
+}
+
+footer{
+  width: 100%;
+  height: 60px;
+  background-color: #e7e7e7;
+  position: absolute;
+  bottom: 0;
+}
+
+footer > div{
+  margin-top: 20px;
+}
