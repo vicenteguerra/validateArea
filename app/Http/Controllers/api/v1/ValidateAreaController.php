@@ -15,7 +15,7 @@ use View;
 class ValidateAreaController extends Controller
 {
 
-  public function index($polygon_id){
+  public function polygon($id){
     $latitude = Input::get("latitude");
     $longitude = Input::get("longitude");
 
@@ -29,7 +29,8 @@ class ValidateAreaController extends Controller
         ];
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
-    if (ValidateAreaController::isValid($polygon_id, $latitude, $longitude)){
+    $polygon = Polygon::find($id);
+    if (ValidateAreaController::isValid($polygonua, $latitude, $longitude)){
       $json = (object) [
         'status' => 200,
         'latitude' => $latitude,
@@ -51,9 +52,46 @@ class ValidateAreaController extends Controller
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
   }
+  public function user($id){
+    $latitude = Input::get("latitude");
+    $longitude = Input::get("longitude");
 
-  public static function isValid($polygon_id, $latitude, $longitude){
-    $points = Point::where('polygon_id', $polygon_id)->get();
+    if(!$latitude || !$longitude){
+      $json = (object) [
+        'status' => 200,
+        'latitude' => $latitude,
+        'longitude' => $longitude,
+        'response' => "/",
+        'msg' => "Invalid Location"
+        ];
+      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+    }
+    $polygons = User::find($id)->polygons();
+    $valids = array_map(function ($polygon) { return ValidateAreaController::isValid($polygon, $latitude, $longitude); } , $polygons);
+    if (array_sum($valids)){
+      $json = (object) [
+        'status' => 200,
+        'latitude' => $latitude,
+        'longitude' => $longitude,
+        'response' => "/",
+        'valid' => true,
+        'msg' => "Location is inside the polygon"
+        ];
+      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+    }else{
+      $json = (object) [
+        'status' => 200,
+        'latitude' => $latitude,
+        'longitude' => $longitude,
+        'response' => "/",
+        'valid' => false,
+        'msg' => "Location is not inside the polygon"
+        ];
+      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+    }
+  }
+  public static function isValid($polygon, $latitude, $longitude){
+    $points = $polygon->points()->get();
     $vertices_x = array();
     $vertices_y = array();
 
