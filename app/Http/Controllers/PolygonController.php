@@ -57,6 +57,7 @@ class PolygonController extends Controller
       try{
         $polygon_id = Input::get("polygon_id");
         $polygon = Polygon::find($polygon_id);
+        $polygon->points()->delete();
         $polygon->delete();
 
         $json = (object) [
