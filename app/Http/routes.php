@@ -17,18 +17,20 @@ Route::get('/', function () {
 
 /* API */
 
-Route::get('/api/v1/{polygon_id}/{latitude}/{longitude}', 'api\v1\ValidateAreaController@getIsValid');
-Route::post('/api/v1/{polygon_id}', 'api\v1\ValidateAreaController@postIsValid');
-
+Route::any('/api/v1/{polygon_id}', 'api\v1\ValidateAreaController@index');
 
 /* ADMIN */
 
-Route::post('/polygon', 'PolygonController@create');
-Route::post('/polygon/update', 'PolygonController@update');
-Route::post('/polygon/delete', 'PolygonController@delete');
+Route::post('/polygon', 'PolygonController@create')->name('create');
+Route::post('/polygon/update', 'PolygonController@update')->name('update');
+Route::post('/polygon/delete', 'PolygonController@delete')->name('delete');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/create', 'HomeController@create');
 Route::get('/test', 'HomeController@test');
+
+Route::any('/{any}', function () {
+    return view('errors/503');
+})->where('any','.*');
