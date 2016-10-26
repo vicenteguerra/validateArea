@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+
 use App\Polygon;
 use App\Point;
+use App\User;
+
 use Auth;
 use Illuminate\Support\Facades\Input;
 use Log;
@@ -24,18 +27,14 @@ class PolygonController extends Controller
         $coordinates_string = Input::get("points");
         $coordinates = json_decode($coordinates_string);
 
-        $polygon = new Polygon;
-        $polygon->name = Uuid::generate();
-        $polygon->user_id = Auth::id();
-
-        $polygon->save();
+        $polygon = new Polygon(['name' => Uuid::generate()]);
+        Auth::user()->polygons()->save($polygon);
 
         foreach ($coordinates as $coord) {
-          $point = new Point;
-          $point->longitude = (string)$coord->lng;
-          $point->latitude = (string)$coord->lat;
-          $point->polygon_id = (string)$polygon->id;
-          $point->save();
+          $point = new Point(['longitude' => (string)$coord->lng,
+                              'latitude' => (string)$coord->lat
+                            ]);
+          $polygon->points()->save($point);
         }
 
         $json = (object) [
@@ -57,11 +56,7 @@ class PolygonController extends Controller
     public function delete(){
       try{
         $polygon_id = Input::get("polygon_id");
-        $points = Point::where('polygon_id', $polygon_id)->get();
-        foreach ($points as $point) {
-          $point->delete();
-        }
-        $polygon = Polygon::where('id', $polygon_id)->first();
+        $polygon = Polygon::find($polygon_id);
         $polygon->delete();
 
         $json = (object) [
@@ -93,7 +88,7 @@ class PolygonController extends Controller
             ];
         }
 
-        $polygon = Polygon::where('id', $polygon_id)->first();
+        $polygon = Polygon::find($polygon_id);
         $polygon->name = $name;
         $polygon->save();
 
