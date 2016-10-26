@@ -115,8 +115,8 @@ function initMap() {
       infoWindow.open(map);
       $("#polygon-name").val(polygon.name);
       $("#polygon-id").val(polygon.id);
-      $("#post_url").text(location.protocol + "//" + location.host + base_url + polygon.id);
-      $("#get_url").text(location.protocol + "//" + location.host + base_url + polygon.id + "?latitude={latitude}&longitude={longitude}") ;
+      $("#post_url").text(location.protocol + "//" + location.host + base_url + "/polygon/" + polygon.id);
+      $("#get_url").text(location.protocol + "//" + location.host + base_url + "/polygon/" + polygon.id + "?latitude={latitude}&longitude={longitude}") ;
       $("#delete-polygon").prop( "disabled", false );
       $("#save-polygon").prop( "disabled", false );
       $("#post_info").show();

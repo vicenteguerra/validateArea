@@ -30,7 +30,7 @@ class ValidateAreaController extends Controller
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
     $polygon = Polygon::find($id);
-    if (ValidateAreaController::isValid($polygonua, $latitude, $longitude)){
+    if (ValidateAreaController::isValid($polygon, $latitude, $longitude)){
       $json = (object) [
         'status' => 200,
         'latitude' => $latitude,
