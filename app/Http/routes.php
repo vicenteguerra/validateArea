@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 /* API */
 
-Route::any('/api/v1/{polygon_id}', 'api\v1\ValidateAreaController@index');
+Route::any('/api/v1/polygon/{id}', 'api\v1\ValidateAreaController@polygon');
+Route::any('/api/v1/user/{id}', 'api\v1\ValidateAreaController@user');
 
 /* ADMIN */
 
