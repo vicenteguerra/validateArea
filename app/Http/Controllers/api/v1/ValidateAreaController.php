@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Polygon;
+use App\User;
 use App\Point;
 use Auth;
 use Uuid;
