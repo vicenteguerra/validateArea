@@ -97,9 +97,10 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
 
   });
+  var base_url = "/api/v1/";
 
-  $("#post_url_all").text(location.protocol + "//" + location.host + base_url + "/user/{{Auth::id()}}" );
-  $("#get_url_all").text(location.protocol + "//" + location.host + base_url + "/user/{{Auth::id()}}"  + "?latitude={latitude}&longitude={longitude}") ;
+  $("#post_url_all").text(location.protocol + "//" + location.host + base_url + "user/{{Auth::id()}}" );
+  $("#get_url_all").text(location.protocol + "//" + location.host + base_url + "user/{{Auth::id()}}"  + "?latitude={latitude}&longitude={longitude}") ;
 
   $("#post_info").hide();
 
@@ -132,7 +133,6 @@ function initMap() {
   });
 
   var polygon_selected;
-  var base_url = "/api/v1/"
 
   var addListenersOnPolygon = function(polygon) {
     google.maps.event.addListener(polygon, 'click', function (event) {
@@ -141,8 +141,8 @@ function initMap() {
       infoWindow.open(map);
       $("#polygon-name").val(polygon.name);
       $("#polygon-id").val(polygon.id);
-      $("#post_url").text(location.protocol + "//" + location.host + base_url + "/polygon/" + polygon.id);
-      $("#get_url").text(location.protocol + "//" + location.host + base_url + "/polygon/" + polygon.id + "?latitude={latitude}&longitude={longitude}") ;
+      $("#post_url").text(location.protocol + "//" + location.host + base_url + "polygon/" + polygon.id);
+      $("#get_url").text(location.protocol + "//" + location.host + base_url + "polygon/" + polygon.id + "?latitude={latitude}&longitude={longitude}") ;
       $("#delete-polygon").prop( "disabled", false );
       $("#save-polygon").prop( "disabled", false );
       $("#post_info").show();
