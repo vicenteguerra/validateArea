@@ -14,31 +14,8 @@ use View;
 
 class ValidateAreaController extends Controller
 {
-  public function getIsValid($polygon_id, $latitude, $longitude){
-    if (ValidateAreaController::isValid($polygon_id, $latitude, $longitude)){
-      $json = (object) [
-        'status' => 200,
-        'latitude' => $latitude,
-        'longitude' => $longitude,
-        'response' => "/",
-        'valid' => true,
-        'msg' => "Location is inside the polygon"
-        ];
-      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
-    }else{
-      $json = (object) [
-        'status' => 200,
-        'latitude' => $latitude,
-        'longitude' => $longitude,
-        'response' => "/",
-        'valid' => false,
-        'msg' => "Location is not inside the polygon"
-        ];
-      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
-    }
-  }
 
-  public function postIsValid($polygon_id){
+  public function index($polygon_id){
     $latitude = Input::get("latitude");
     $longitude = Input::get("longitude");
 
