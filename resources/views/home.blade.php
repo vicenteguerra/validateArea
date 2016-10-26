@@ -13,6 +13,29 @@
                   </div>
                 </div>
             </div>
+            <div class="panel panel-warning">
+              <div class="panel-heading">API Information (All Polygons)</div>
+              <div class="panel-body">
+                <div class="well" >
+                  <h4>POST Request</h4>
+                  <pre><code id="post_url_all"></code></pre>
+                  <pre><code id="post_info_all">
+{
+  "latitude": "19.418690",
+  "longitude": "-99.185987"
+}
+                  </code></pre>
+                  <p>*Replace with your location</p>
+                </div>
+                <div class="well">
+                  <h4>GET Request</h4>
+                  <pre><code id="get_url_all">
+
+                  </code></pre>
+                  <p>*Replace with your location</p>
+                </div>
+              </div>
+            </div>
         </div>
         <div class="col-md-4">
           <div class="panel-group">
@@ -74,6 +97,9 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
 
   });
+
+  $("#post_url_all").text(location.protocol + "//" + location.host + base_url + "/user/{{Auth::id()}}" );
+  $("#get_url_all").text(location.protocol + "//" + location.host + base_url + "/user/{{Auth::id()}}"  + "?latitude={latitude}&longitude={longitude}") ;
 
   $("#post_info").hide();
 
