@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @include("tagmanagerhead")
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,8 +31,10 @@
             margin-right: 6px;
         }
     </style>
+
 </head>
 <body id="app-layout">
+  @include('tagmanagerbody')
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
