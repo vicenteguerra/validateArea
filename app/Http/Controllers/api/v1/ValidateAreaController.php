@@ -24,7 +24,6 @@ class ValidateAreaController extends Controller
         'status' => 200,
         'latitude' => $latitude,
         'longitude' => $longitude,
-        'response' => "/",
         'msg' => "Invalid Location"
         ];
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
@@ -39,7 +38,6 @@ class ValidateAreaController extends Controller
         'status' => 200,
         'latitude' => $latitude,
         'longitude' => $longitude,
-        'response' => "/",
         'valid' => true,
         'msg' => "Location is inside the polygon"
         ];
@@ -51,11 +49,10 @@ class ValidateAreaController extends Controller
         'status' => 200,
         'latitude' => $latitude,
         'longitude' => $longitude,
-        'response' => "/",
         'valid' => false,
         'msg' => "Location is not inside the polygon"
         ];
-        
+
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
   }

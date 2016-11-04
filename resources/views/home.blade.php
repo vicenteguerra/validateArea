@@ -49,16 +49,20 @@
               <div class="panel-heading">Information</div>
               <div class="panel-body">
                 <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon3">ID</span>
+                  <input type="text" class="form-control" disabled id="polygon-id" aria-describedby="basic-addon3">
+                </div>
+                <br>
+                <div class="input-group">
                   <span class="input-group-addon" id="basic-addon3">Name</span>
                   <input type="text" class="form-control" id="polygon-name" aria-describedby="basic-addon3">
-                  <input type="hidden" class="form-control" id="polygon-id" aria-describedby="basic-addon3">
                 </div><br>
                 <button class="btn btn-success col-md-12" id="save-polygon" role="button" disabled>Save Name</button><br><br>
                 <button class="btn btn-danger col-md-12" id="delete-polygon" role="button" disabled>Delete Polygon</button><br>
               </div>
             </div>
             <div class="panel panel-warning">
-              <div class="panel-heading">API Information</div>
+              <div class="panel-heading">Polygon Validation</div>
               <div class="panel-body">
                 <div class="well" >
                   <h4>POST Request</h4>
@@ -79,6 +83,17 @@
               </div>
             </div>
           </div> <!-- End Panel Group -->
+
+          <div class="panel panel-warning">
+            <div class="panel-heading">Get Polygon Points</div>
+            <div class="panel-body">
+              <div class="well" >
+                <h4>GET Request</h4>
+                <pre><code id="get_points_url"></code></pre>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End Panel Group -->
         </div>
     </div>
 </div>
@@ -143,6 +158,7 @@ function initMap() {
       $("#polygon-id").val(polygon.id);
       $("#post_url").text(location.protocol + "//" + location.host + base_url + "polygon/" + polygon.id);
       $("#get_url").text(location.protocol + "//" + location.host + base_url + "polygon/" + polygon.id + "?latitude={latitude}&longitude={longitude}") ;
+      $("#get_points_url").text(location.protocol + "//" + location.host + base_url + "polygon/" + polygon.id + "/points") ;
       $("#delete-polygon").prop( "disabled", false );
       $("#save-polygon").prop( "disabled", false );
       $("#post_info").show();
