@@ -36,6 +36,15 @@
                 </div>
               </div>
             </div>
+            <div class="panel panel-warning">
+              <div class="panel-heading">Get Polygon Points (All Polygons)</div>
+              <div class="panel-body">
+                <div class="well" >
+                  <h4>GET Request</h4>
+                  <pre><code id="get_points_url_all"></code></pre>
+                </div>
+              </div>
+            </div>
         </div>
         <div class="col-md-4">
           <div class="panel-group">
@@ -116,6 +125,8 @@ function initMap() {
 
   $("#post_url_all").text(location.protocol + "//" + location.host + base_url + "user/{{Auth::id()}}" );
   $("#get_url_all").text(location.protocol + "//" + location.host + base_url + "user/{{Auth::id()}}"  + "?latitude={latitude}&longitude={longitude}") ;
+  $("#get_points_url_all").text(location.protocol + "//" + location.host + base_url + "user/{{Auth::id()}}"  + "/points") ;
+
 
   $("#post_info").hide();
 
