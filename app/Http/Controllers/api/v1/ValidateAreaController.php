@@ -12,10 +12,11 @@ use App\Point;
 use Auth;
 use Uuid;
 use View;
+use App\LogRequest;
 
 class ValidateAreaController extends Controller
 {
-  public function index($polygons_ids){
+  public function index($polygons_ids, $user_id){
     $latitude = Input::get("latitude");
     $longitude = Input::get("longitude");
 
@@ -29,11 +30,25 @@ class ValidateAreaController extends Controller
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
 
-    $valids = array_map(function ($polygon_id) use($latitude, $longitude) {
-        return ValidateAreaController::isValid($polygon_id, $latitude, $longitude);
+    $valid_array = array_map(function ($polygon_id) use($latitude, $longitude) {
+        if(ValidateAreaController::isValid($polygon_id, $latitude, $longitude)){
+          return $polygon_id;
+        }
       } , $polygons_ids);
 
-    if (array_sum($valids)){
+    $valid = array_reduce($valid_array, function($valid, $polygon){
+        return ($polygon) ? $polygon : false;
+      });
+
+    if($valid){
+      $request = new LogRequest(
+          ['latitude' => $latitude,
+           'longitude' => $longitude,
+           'valid' => true,
+           'user_id' => $user_id,
+           'polygon_id' => $valid
+                        ]);
+      $request->save();
       $json = (object) [
         'status' => 200,
         'latitude' => $latitude,
@@ -45,6 +60,14 @@ class ValidateAreaController extends Controller
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
 
     }else{
+      $request = new LogRequest(
+          ['latitude' => $latitude,
+           'longitude' => $longitude,
+           'valid' => false,
+           'user_id' => $user_id
+                        ]);
+
+      $request->save();
       $json = (object) [
         'status' => 200,
         'latitude' => $latitude,
@@ -59,7 +82,8 @@ class ValidateAreaController extends Controller
 
   public function polygon($id)
   {
-    return $this->index(array($id));
+    $user_id = Polygon::find($id)->user->id;
+    return $this->index(array($id), $user_id);
   }
 
   public function user($id)
@@ -67,7 +91,7 @@ class ValidateAreaController extends Controller
     $polygons= User::find($id)->polygons()->get()->toArray();
     $polygons_ids = array_map(function ($polygon){ return $polygon['id'];}, $polygons);
 
-    return $this->index($polygons_ids);
+    return $this->index($polygons_ids, $id);
   }
 
   public static function isValid($polygon_id, $latitude, $longitude){

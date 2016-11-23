@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Polygon;
 use App\User;
 use App\Point;
+use App\LogRequest;
 use Auth;
 use Uuid;
 use View;
@@ -38,6 +39,11 @@ class UserController extends Controller
       'polygons' => array_map($polygonFormat, $polygons)
       ];
     return response(json_encode($json), 200)->header('Content-Type', 'application/json');
+  }
+
+  public function requests($id){
+    $requests = User::find($id)->requests()->get();
+    return json_encode($requests);
   }
 
 }

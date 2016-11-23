@@ -21,6 +21,7 @@ Route::any('/api/v1/polygon/{id}', 'api\v1\ValidateAreaController@polygon');
 Route::any('/api/v1/user/{id}', 'api\v1\ValidateAreaController@user');
 Route::get('/api/v1/polygon/{id}/points', 'api\v1\PolygonController@points');
 Route::get('/api/v1/user/{id}/points', 'api\v1\UserController@points');
+Route::get('/api/v1/user/{id}/requests', 'api\v1\UserController@requests');
 
 /* ADMIN */
 

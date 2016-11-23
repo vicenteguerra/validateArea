@@ -13,6 +13,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Polygon','user_id','id');
     }
+
+    public function requests()
+    {
+        return $this->hasMany('App\LogRequest','user_id','id');
+    }
     /**
      * The attributes that are mass assignable.
      *
