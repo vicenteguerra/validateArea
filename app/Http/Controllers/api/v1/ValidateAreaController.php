@@ -36,17 +36,17 @@ class ValidateAreaController extends Controller
         }
       } , $polygons_ids);
 
-    $valid = array_reduce($valid_array, function($valid, $polygon){
-        return ($polygon) ? $polygon : false;
+     $valid = array_filter($valid_array, function($k){
+        return ($k);
       });
 
-    if($valid){
+    if(reset($valid)){
       $request = new LogRequest(
           ['latitude' => $latitude,
            'longitude' => $longitude,
            'valid' => true,
            'user_id' => $user_id,
-           'polygon_id' => $valid
+           'polygon_id' => reset($valid)
                         ]);
       $request->save();
       $json = (object) [
