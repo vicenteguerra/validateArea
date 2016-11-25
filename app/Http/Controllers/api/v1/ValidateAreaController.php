@@ -30,54 +30,34 @@ class ValidateAreaController extends Controller
       return response(json_encode($json), 200)->header('Content-Type', 'application/json');
     }
 
-    $valid_array = array_map(function ($polygon_id) use($latitude, $longitude) {
-        if(ValidateAreaController::isValid($polygon_id, $latitude, $longitude)){
-          return $polygon_id;
-        }
-      } , $polygons_ids);
-
-     $valid = array_filter($valid_array, function($k){
-        return ($k);
+     $valid_array = array_filter($polygons_ids, function($polygon_id) use($latitude, $longitude) {
+        return ValidateAreaController::isValid($polygon_id, $latitude, $longitude);
       });
 
-    if(reset($valid)){
-      $request = new LogRequest(
-          ['latitude' => $latitude,
-           'longitude' => $longitude,
-           'valid' => true,
-           'user_id' => $user_id,
-           'polygon_id' => reset($valid)
-                        ]);
-      $request->save();
-      $json = (object) [
+    $valid = count($valid_array)>0;
+
+    $v = ($valid) ? 'is' : 'is not';
+    $s = (count($polygons_ids)>1) ? 'any' : 'the';
+    $msg = "Location " . $v . " inside " . $s . " polygon";
+
+    $request = new LogRequest(
+      ['latitude' => $latitude,
+       'longitude' => $longitude,
+       'valid' => $valid,
+       'user_id' => $user_id,
+       'polygon_id' => json_encode($valid_array)
+       ]);
+    $request->save();
+    $json = (object) [
         'status' => 200,
         'latitude' => $latitude,
         'longitude' => $longitude,
-        'valid' => true,
-        'msg' => "Location is inside the polygon"
+        'valid' => $valid,
+        'msg' => $msg,
+        'polygons_ids' => $valid_array
         ];
 
-      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
-
-    }else{
-      $request = new LogRequest(
-          ['latitude' => $latitude,
-           'longitude' => $longitude,
-           'valid' => false,
-           'user_id' => $user_id
-                        ]);
-
-      $request->save();
-      $json = (object) [
-        'status' => 200,
-        'latitude' => $latitude,
-        'longitude' => $longitude,
-        'valid' => false,
-        'msg' => "Location is not inside the polygon"
-        ];
-
-      return response(json_encode($json), 200)->header('Content-Type', 'application/json');
-    }
+    return response(json_encode($json), 200)->header('Content-Type', 'application/json');
   }
 
   public function polygon($id)
