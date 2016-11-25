@@ -45,7 +45,7 @@ class ValidateAreaController extends Controller
        'longitude' => $longitude,
        'valid' => $valid,
        'user_id' => $user_id,
-       'polygon_id' => json_encode($valid_array)
+       'polygon_id' => reset($valid_array)
        ]);
     $request->save();
     $json = (object) [
