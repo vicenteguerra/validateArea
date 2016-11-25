@@ -20,15 +20,8 @@ class UserController extends Controller
     $polygons = User::find($id)->polygons()->get()->toArray();
 
     $polygonFormat = function($polygon){
-      $points = Polygon::find($polygon["id"])->points()->get();
-      $beauty = function ($point){
-        unset($point["id"]);
-        unset($point["polygon_id"]);
-        unset($point["created_at"]);
-        unset($point["updated_at"]);
-        return $point;
-      };
-      $polygon["points"] = array_map($beauty, $points->toArray());
+      $points = Polygon::find($polygon["id"])->points()->select(['latitude', 'longitude'])->get()->toArray();
+      $polygon["points"] = $points;
       return $polygon;
     };
 
