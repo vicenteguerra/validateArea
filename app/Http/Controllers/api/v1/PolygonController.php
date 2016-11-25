@@ -16,21 +16,14 @@ use View;
 class PolygonController extends Controller
 {
   public function points($id){
-    $points = Polygon::find($id)->points()->get();
-    $beauty = function ($point){
-      unset($point["id"]);
-      unset($point["polygon_id"]);
-      unset($point["created_at"]);
-      unset($point["updated_at"]);
-      return $point;
-    };
+    $points = Polygon::find($id)->points()->select(['latitude', 'longitude'])->get();
 
     $json = (object) [
       'status' => 200,
       'polygon_id' => $id,
       'msg' => "Points of polygon",
       'name' => Polygon::find($id)->name,
-      'points' => array_map($beauty, $points->toArray())
+      'points' => $points->toArray()
       ];
     return response(json_encode($json), 200)->header('Content-Type', 'application/json');
   }
