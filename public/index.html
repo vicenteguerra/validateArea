@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Valid Place</title>
+    <title>New Age - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -52,17 +52,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a class="page-scroll" href="#download">Download</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#features">Features</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#cta">Info</a>
+                        <a class="page-scroll" href="#contact">Contact</a>
                     </li>
-                    @if (Auth::guest())
-                        <li><a class="page-scroll" href="{{ url('/login') }}">Login</a></li>
-                        <li><a class="page-scroll" href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li><a class="page-scroll"  href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                    @endif
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -78,12 +75,7 @@
                         <div class="header-content-inner">
                             <h1>Simple web service for verify if a location coordinates are inside of polygons drawn in a Map.</h1>
                             <h2> Very useful for allow and restrict services in Mobile Apps.</h2>
-                            <br>
-                            @if (Auth::guest())
-                                <a href="{{ url('/register') }}" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
-                            @else
-                                <a href="{{ url('/home') }}" class="btn btn-outline btn-xl page-scroll">Draw Polygons!</a>
-                            @endif
+                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
                         </div>
                     </div>
                 </div>
@@ -106,13 +98,29 @@
         </div>
     </header>
 
+    <section id="download" class="download bg-primary text-center">
+      
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Discover what all the buzz is about!</h2>
+                    <p>Our app is available on any mobile device! Download now to get started!</p>
+                    <div class="badges">
+                        <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+                        <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="features" class="features">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
-                        <h2>Developers and Startups</h2>
-                        <p class="text-muted">Tool for restric services by location</p>
+                        <h2>Unlimited Features, Unlimited Fun</h2>
+                        <p class="text-muted">Check out what you can do with this app theme!</p>
                         <hr>
                     </div>
                 </div>
@@ -139,7 +147,7 @@
                                 <div class="feature-item">
                                     <i class="icon-screen-desktop text-primary"></i>
                                     <h3>Draw in desktop admin</h3>
-                                    <p class="text-muted">Draw your valid areas, save and name your polygons</p>
+                                    <p class="text-muted">Draw your valid areas and save your polygons</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -187,75 +195,47 @@
             </div>
     </section>
 
-    <section id="download" class="download bg-primary-transparency text-center">
-
-      <div class="download-text">
-          <h2>Add and extra value to your Apps</h2></h3>Test your business in a delimited area</h3><br><br>
-          @if (Auth::guest())
-              <a href="{{ url('/register') }}" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
-          @else
-              <a href="{{ url('/home') }}" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
-          @endif
-
-      </div>
-      <div class="video-container">
-        <iframe class="background-video"
-        src="//player.vimeo.com/video/156188945?title=0&amp;byline=0&amp;portrait=0&amp;color=3a6774&amp;autoplay=1&amp;loop=1"
-        frameborder="0" height="100%" width="100%" webkitallowfullscreen
-        mozallowfullscreen allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
-    <section id="cta" class="cta">
+    <section class="cta">
         <div class="cta-content">
             <div class="container">
-                <div class="col-md-4">
-                    <p>Validate Location<br>
-                    Just a simple GET or POST Request</p>
-                    <code>
-                      http://valid.place/api/v1/user/{user_id}?latitude={latitude}&longitude={longitude}
-                    </code>
-                    <br><br>
-                    <p>Draw valid area in your App</p>
-                    <code>
-                      http://valid.place/api/v1/user/{user_id}/points
-                    </code>
-                </div>
-                <div class="col-md-8">
-                    <img src="img/Mac.png" class="img-responsive" alt=""> </div>
-                </div>
-
+                <h2>Stop waiting.<br>Start building.</h2>
+                <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
             </div>
+        </div>
+        <div class="overlay"></div>
+    </section>
+
+    <section id="contact" class="contact bg-primary">
+        <div class="container">
+            <h2>We <i class="fa fa-heart"></i> new friends!</h2>
+            <ul class="list-inline list-social">
+                <li class="social-twitter">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="social-facebook">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="social-google-plus">
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+            </ul>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p class="emoji">💚 🇲🇽 🍻 </p>
+            <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="https://twitter.com/IngHucruz"><i class="icon-social-twitter"></i> IngHucruz</a>
+                    <a href="#">Privacy</a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/ok_atomic"><i class="icon-social-twitter"></i> ok_atomic</a>
+                    <a href="#">Terms</a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/elmontoya7"><i class="icon-social-twitter"></i> elmontoya7</a>
+                    <a href="#">FAQ</a>
                 </li>
-                <li><a href="https://github.com/vicenteguerra/validateArea"><i class="icon-social-github"></i> Github</a></li>
             </ul>
-            <div class="donation-botton">
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="4VXPKPF7SMA76">
-              <input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
-              <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-            </form>
-          </div>
-
-            <a href="https://vimeo.com/156188945">Maps Video </a><br>
-            <a href="http://yamblet.com">2016 Yamblet.com</p>
         </div>
     </footer>
 

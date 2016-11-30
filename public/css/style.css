@@ -9,25 +9,7 @@ body{
   color: #666;
 }
 
-.background-video{
-  opacity: 0.5;
-  pointer-events: none; overflow:hidden;
-  overflow-x:hidden;
-  overflow-y:hidden;
-  height:100%;
-  width:100%;
-  position:absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-}
-.video-container{
-  margin:0px;
-  padding:0px;
-  overflow:hidden;
-  pointer-events: none;
-}
+
 
 footer{
   width: 100%;
