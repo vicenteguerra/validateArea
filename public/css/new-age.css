@@ -389,6 +389,12 @@ footer .emoji{
   font-size: 30px;
 }
 
+.icon{
+  width: 25px;
+  display: inline !important;
+  margin-right: 5px;
+}
+
 footer .donation-botton{
   margin: 10px 0;
 }

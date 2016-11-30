@@ -6,8 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Simple web service for verify if a location coordinates are inside of polygons drawn in a Map.">
+    <meta name="author" content="Vicente Guerra">
+    <link rel="icon"
+      type="image/png"
+      href="<?php echo asset('/img/icon.png') ?>" />
 
     <title>Valid Place</title>
 
@@ -23,10 +26,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
-    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <link rel="stylesheet" href="<?php echo asset('/vendor/device-mockups/device-mockups.min.css') ?>">
 
     <!-- Theme CSS -->
-    <link href="css/new-age.css" rel="stylesheet">
+    <link href="<?php echo asset('/css/new-age.css') ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +50,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Valid Place</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><img class="icon" src="<?php echo asset('/img/icon.png') ?>" alt="">Valid Place</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
