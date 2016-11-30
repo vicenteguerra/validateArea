@@ -78,7 +78,7 @@
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-8">
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Simple web service to verify if a location coordinates are inside of polygons drawn in a Map.</h1>
@@ -92,13 +92,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <div class="device-container">
                         <div class="device-mockup iphone6_plus portrait white">
                             <div class="device">
                                 <div class="screen">
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="img/demo-screen-1.jpg" class="img-responsive" alt="">
+                                    <img src="img/butler.gif" class="img-responsive" alt="">
                                 </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -129,7 +129,7 @@
                             <div class="device">
                                 <div class="screen">
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="img/demo-screen-1.jpg" class="img-responsive" alt=""> </div>
+                                    <img src="img/beer.gif" class="img-responsive" alt=""> </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
                                 </div>
