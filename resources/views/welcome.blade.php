@@ -267,8 +267,8 @@
             </form>
           </div>
 
-            <a target="_blank" href="https://vimeo.com/156188945">Maps Video </a><br>
-            <a target="_blank" href="http://yamblet.com">2016 Yamblet.com</p>
+            Thanks to <a target="_blank" href="https://vimeo.com/156188945">Maps Video </a>,
+            <a target="_blank" href="https://twitter.com/GarciaRomero_">@GarciaRomero</p>
         </div>
     </footer>
 
