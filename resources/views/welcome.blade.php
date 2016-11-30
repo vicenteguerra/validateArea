@@ -27,10 +27,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
 
-    <link rel="stylesheet" href="<?php echo asset('/vendor/device-mockups/device-mockups.min.css') ?>">
+    <link type='text/css' rel="stylesheet" href="<?php echo asset('/vendor/device-mockups/device-mockups.min.css') ?>">
 
     <!-- Theme CSS -->
-    <link href="<?php echo asset('/css/new-age.css') ?>" rel="stylesheet">
+    <link type='text/css' href="<?php echo asset('/css/new-age.css') ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
