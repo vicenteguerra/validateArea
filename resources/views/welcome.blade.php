@@ -81,7 +81,7 @@
                 <div class="col-sm-7">
                     <div class="header-content">
                         <div class="header-content-inner">
-                            <h1>Simple web service for verify if a location coordinates are inside of polygons drawn in a Map.</h1>
+                            <h1>Simple web service to verify if a location coordinates are inside of polygons drawn in a Map.</h1>
                             <h2> Very useful for allow and restrict services in Mobile Apps.</h2>
                             <br>
                             @if (Auth::guest())
@@ -195,7 +195,7 @@
     <section id="download" class="download bg-primary-transparency text-center">
 
       <div class="download-text">
-          <h2>Add and extra value to your Apps</h2></h3>Test your business in a delimited area</h3><br><br>
+          <h2>Add an extra value to your Apps</h2></h3>Test your business in a delimited area</h3><br><br>
           @if (Auth::guest())
               <a href="{{ url('/register') }}" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
           @else
@@ -249,6 +249,14 @@
                     <a href="https://twitter.com/elmontoya7"><i class="icon-social-twitter"></i> elmontoya7</a>
                 </li>
                 <li><a href="https://github.com/vicenteguerra/validateArea"><i class="icon-social-github"></i> Github</a></li>
+            </ul><br>
+            <ul class="list-inline">
+                <li>
+                    <a target="_blank" href="https://www.producthunt.com/posts/valid-place"><i class="icon-like"></i> Product Hunt</a>
+                </li>
+                <li>
+                    <a target="_blank" href="http://twitter.com/share?text=🍻 Cool web service to validate locations&url=http://👉🌏✔.📡👽.ws&hashtags=validplace,DeveloperTools"><i class="icon-social-twitter"></i> Fun Share http://👉🌏✔.📡👽.ws</a>
+                </li>
             </ul>
             <div class="donation-botton">
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -259,8 +267,8 @@
             </form>
           </div>
 
-            <a href="https://vimeo.com/156188945">Maps Video </a><br>
-            <a href="http://yamblet.com">2016 Yamblet.com</p>
+            <a target="_blank" href="https://vimeo.com/156188945">Maps Video </a><br>
+            <a target="_blank" href="http://yamblet.com">2016 Yamblet.com</p>
         </div>
     </footer>
 
