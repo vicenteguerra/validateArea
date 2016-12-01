@@ -65,7 +65,7 @@ function initMap() {
     var p = new google.maps.Polygon({
         paths: {!! $polygon["points"] !!},
         strokeWeight: 0,
-        fillColor: '#FF0000',
+        fillColor: rgba(255,0,0),
         fillOpacity: 0.6,
         name: "{{ $polygon["name"] }}",
         id: "{{ $polygon["id"] }}"

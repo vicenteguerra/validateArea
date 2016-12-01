@@ -178,11 +178,14 @@ function initMap() {
     });
   }
 
+
+
   @foreach($polygons as $polygon)
+
     var p = new google.maps.Polygon({
         paths: {!! $polygon["points"] !!},
         strokeWeight: 0,
-        fillColor: '#FF0000',
+        fillColor:  "rgba(" + Math.floor((Math.random() * 255) ) + "," + Math.floor((Math.random() * 255) ) + "," + Math.floor((Math.random() * 255) ) + ",1)",
         fillOpacity: 0.6,
         name: "{{ $polygon["name"] }}",
         id: "{{ $polygon["id"] }}"
