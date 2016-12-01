@@ -22,9 +22,7 @@
 @endsection
 
 <script type="text/javascript">
-$(document).ready(function(){
 
-});
 
 function initMap() {
 
@@ -56,12 +54,27 @@ function initMap() {
  google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
    var array   = polygon.getPath().getArray();
   registerArea(array);
+  polygon.setMap(map);
 });
 
 
-  polygon.setMap(map);
+
   infoWindow = new google.maps.InfoWindow;
+
+  @foreach($polygons as $polygon)
+    var p = new google.maps.Polygon({
+        paths: {!! $polygon["points"] !!},
+        strokeWeight: 0,
+        fillColor: '#FF0000',
+        fillOpacity: 0.6,
+        name: "{{ $polygon["name"] }}",
+        id: "{{ $polygon["id"] }}"
+    });
+    p.setMap(map);
+  @endforeach
 }
+
+
 
 function registerArea(coords){
   $.ajaxSetup({

@@ -54,7 +54,22 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('registerArea');
+      $polygons = Polygon::where('user_id', Auth::id())->get();
+      $polygons_array = Array();
+      foreach ($polygons as $polygon) {
+        $points = Point::where('polygon_id', $polygon->id)->get();
+        $polygon_info["name"] = $polygon->name;
+        $polygon_info["id"] = $polygon->id;
+        $points_array = Array();
+        foreach ($points as $point) {
+          $point_info["lat"] = $point->latitude;
+          $point_info["lng"] = $point->longitude;
+          $points_array[] = $point_info;
+        }
+        $polygon_info["points"] = json_encode($points_array, JSON_NUMERIC_CHECK);
+        $polygons_array[] = $polygon_info;
+      }
+      return View::make('registerArea', array('polygons' => $polygons_array));
     }
 
     public function test(){
