@@ -79,7 +79,7 @@ class HomeController extends Controller
       foreach ($polygons as $polygon) {
         $points = Point::where('polygon_id', $polygon->id)->get();
         $polygon_info["name"] = $polygon->name;
-        $polygon_info["user_id"] = $polygon->id;
+        $polygon_info["polygon_id"] = $polygon->id;
         $polygon_info["points"] = $points;
         $polygons_array[] = $polygon_info;
       }
